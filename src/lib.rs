@@ -15,7 +15,7 @@ impl Config {
         args.next();
 
         let query = match args.next() {
-            Some(query) => query, // todo
+            Some(query) => query,
             None => return Err("Didn't get a query string"),
         };
 
@@ -50,4 +50,18 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     }
 
     Ok(())
+}
+
+#[cfg(test)]
+mod test {
+    use self::super::search;
+
+    #[test]
+    fn test_search() {
+        let res = search("hi", "asdasd\nhiasda\nasdhi");
+
+        for r in res.iter() {
+            println!("{}", r);
+        }
+    }
 }
